@@ -22,7 +22,7 @@ router.post('/register', async (req,res) => {
         await user.save();
 
         const payload = {
-            id: user.id,
+            id: user._id,
             role: user.role,
         };
         
@@ -51,7 +51,7 @@ router.post('/login',async (req,res)=>{
         }
         
         const payload={
-            id:user.id,
+            id:user._id,
             role:user.role
         };
 

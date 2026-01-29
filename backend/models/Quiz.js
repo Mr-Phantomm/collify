@@ -44,7 +44,7 @@ const quizSchema = new mongoose.Schema({
     },
 },{ timestamps: true });
 
-quizSchema.pre('save', async function(next){
+quizSchema.pre('save', async function(){
     if(this.isModified('questions')){
         const Question = mongoose.model('Question');
 
@@ -58,9 +58,9 @@ quizSchema.pre('save', async function(next){
         }
         this.totalMarks = total;
 
-        next();
-
     }
 });
+
+export default mongoose.model('Quiz',quizSchema);
 
 

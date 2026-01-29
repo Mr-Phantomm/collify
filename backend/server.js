@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
 import classroomRoutes from './routes/classroom.js';
 import quizRoutes from './routes/quiz.js';
+import attemptRoutes from './routes/attempt.js';
 // import { protect,teacherOnly } from './middleware/auth.js';
 // import Question from './models/Question.js'; 
 
@@ -50,5 +51,7 @@ app.get('/',(req,res)=>{
 app.use('/auth',authRoutes);
 app.use('/classroom',classroomRoutes);
 app.use('/quizzes',quizRoutes);
+app.use('/attempts',attemptRoutes);
+
 
 app.listen(process.env.PORT, ()=>console.log(`Server on port ${process.env.PORT}`));

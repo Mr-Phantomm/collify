@@ -49,7 +49,7 @@ router.post('/:quizId/add-question',protect,teacherOnly,async(req,res)=>{
 
         const question = new Question({
             classroom: quiz.classroom,
-            createdBy=req.user.id,
+            createdBy: req.user.id,
             type:'mcq',
             questionText,
             options,
@@ -57,7 +57,7 @@ router.post('/:quizId/add-question',protect,teacherOnly,async(req,res)=>{
             marks: marks||1,
         });
 
-        await question.save;
+        await question.save();
 
         quiz.questions.push(question._id);
         await quiz.save();

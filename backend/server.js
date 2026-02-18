@@ -25,7 +25,7 @@ app.get('/',(req,res)=>{
 // app.post('/api/test-question', async (req, res) => {
 //   try {
 //     const question = new Question({
-//       classroom: '697a00aa6b322431e7e79157', // replace with real ID from Atlas later
+//       classroom: '697a00aa6b322431e7e79157',
 //       createdBy: '6979f230b53056904e1ff5d4',
 //       type: 'mcq',
 //       questionText: 'What is 2+2?',

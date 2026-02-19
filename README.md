@@ -1,60 +1,100 @@
-# Collify – Modern Classroom & Testing Platform
+# Collify – Classroom + Testing Platform
 
-![Collify Banner](https://via.placeholder.com/1280x400/6366f1/ffffff?text=Collify+-+Learn+Better+Together)  
-<!-- Replace this placeholder with a real banner later (use Canva/Figma) -->
+A full-stack learning platform inspired by Google Classroom with built-in quiz/testing features (MCQs with auto-grading + planned coding/DSA problems).
 
-A full-stack web application that combines **Google Classroom-style classroom management** with a powerful **built-in testing platform** — supporting **MCQ quizzes with auto-grading** and (upcoming) **coding/DSA problem submissions**.
+- Teachers: create classrooms, make quizzes (MCQ), manage students
+- Students: join classrooms, attempt quizzes, see scores
 
-- **Teachers** can create classrooms, post quizzes (MCQs + coding), manage students, and grade submissions.
-- **Students** can join classrooms, attempt quizzes, submit code, and instantly see scores.
+Frontend: Next.js (JavaScript) + Tailwind  
+Backend: Node.js / Express / MongoDB Atlas
 
-Built with **Next.js (JavaScript)** for the frontend and **Node.js + Express + MongoDB** for the backend.
+## Features Done
+- Register / Login (student & teacher roles)
+- JWT authentication & role protection
+- Create classroom (teacher only)
+- Join classroom using code
+- MCQ quiz creation & auto-grading
+- Student quiz attempt & instant score
 
-## ✨ Features
+## Features Planned
+- Coding / DSA problem submission
+- Teacher manual grading view
+- Full dashboard with classrooms list
+- Responsive UI + Navbar
+- Attendance, notices, file uploads
 
-### Core Features
-- User authentication (register / login) with role-based access (student / teacher)
-- JWT token-based authorization & route protection
-- Create & join classrooms using unique auto-generated join codes
-- Teacher-only classroom management
+## Tech Stack
+- Frontend: Next.js 14 (App Router), React, Tailwind CSS
+- Backend: Node.js, Express, Mongoose
+- Database: MongoDB Atlas
+- Auth: JWT + bcrypt
 
-### Testing & Examination Platform
-- Create MCQ quizzes with auto-grading
-- Add multiple-choice questions with options, correct answers, and marks
-- Students can attempt quizzes and get instant scores
-- Attempt tracking, submission history, and basic results
-- **Planned** — Coding/DSA problem creation, code submission, manual/auto grading
+## Quick Setup
 
-### Tech Highlights
-- Modern **Next.js 14** (App Router) + JavaScript
-- **Express** backend with Mongoose & JWT
-- Role-based middleware protection
-- Password hashing with bcrypt
-- MongoDB Atlas (cloud database)
-- Tailwind CSS for responsive UI (being added)
+### 1. Clone repo
+git clone https://github.com/YOUR_USERNAME/collify.git
+cd collify
 
-## 🛠 Tech Stack
+### 2. Backend
+cd backend
+npm install
 
-| Layer          | Technology                              |
-|----------------|-----------------------------------------|
-| Frontend       | Next.js 14 (App Router), React          |
-| Styling        | Tailwind CSS                            |
-| Backend        | Node.js, Express.js                     |
-| Database       | MongoDB Atlas + Mongoose                |
-| Authentication | JWT (jsonwebtoken), bcrypt              |
-| Forms          | react-hook-form + zod (planned)         |
-| API Client     | fetch / axios                           |
+Create .env file in backend/:
+PORT=5000
+DB_URI=mongodb+srv://<user>:<pass>@cluster0.xxx.mongodb.net/collify?retryWrites=true&w=majority
+JWT_SECRET=super_long_random_secret_1234567890
 
-## 🚀 Getting Started
+npm start
+→ should show "Server is running on port 5000"
 
-### Prerequisites
-- Node.js ≥ 18
-- MongoDB Atlas account (free tier is enough)
-- Git
+### 3. Frontend (new terminal)
+cd ../frontend
+npm install
+npm run dev
 
-### Backend Setup
+→ open http://localhost:3000
 
-1. Clone the repo
-   ```bash
-   git clone https://github.com/yourusername/collify.git
-   cd collify
+### Default flow
+1. Register → choose student/teacher
+2. Login
+3. Dashboard → see classrooms
+4. Teacher → create classroom
+5. Student → join with code → attempt quiz
+
+## Folder Structure
+collify/
+├── backend/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── server.js
+│   └── .env
+├── frontend/
+│   ├── src/
+│   │   ├── app/           ← login, register, dashboard...
+│   │   ├── components/
+│   │   └── lib/
+│   └── package.json
+└── README.md
+
+## Current Status (Feb 2026)
+✅ Auth + roles  
+✅ Classrooms (create/join)  
+✅ MCQ quizzes + auto-grading  
+✅ Quiz attempt & score  
+🚧 Dashboard + classrooms fetch  
+⏳ Coding problems  
+⏳ Teacher grading  
+⏳ Full UI polish
+
+## Contributing
+1. Fork
+2. git checkout -b feature/your-feature
+3. git commit -m "Add feature"
+4. git push origin feature/your-feature
+5. Open Pull Request
+
+MIT License  
+Feel free to fork, learn, modify.
+
+Made with ❤️ by Arun

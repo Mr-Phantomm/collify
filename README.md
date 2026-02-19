@@ -97,4 +97,3 @@ collify/
 MIT License  
 Feel free to fork, learn, modify.
 
-Made with ❤️ by Arun

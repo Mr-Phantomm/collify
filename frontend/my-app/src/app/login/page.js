@@ -8,6 +8,9 @@ import { useState } from "react";
 //   "email": "student@example.com",
 //   "password": "student123",
 export default function Login() {
+    if(localStorage.getItem('token')){
+        setTimeout(()=>window.location.href="/",1000);
+    }
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

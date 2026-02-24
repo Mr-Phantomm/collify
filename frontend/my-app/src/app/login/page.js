@@ -4,6 +4,13 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './Login.module.css';
 
+// Example Teacher Login for testing
+//   "email": "arun@teacher.com",
+//   "password": "test123456",
+// Example student Login for testing 
+//   "email": "student@example.com",
+//   "password": "student123",
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

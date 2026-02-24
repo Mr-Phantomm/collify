@@ -104,7 +104,7 @@ export default function Register(){
                 </form>
 
                 <p className={styles['signup-text']}>
-                    Already have an account? <span>Sign in</span>
+                    Already have an account? <Link href="/login"><span>Sign in</span></Link>
                 </p>
             </div>
         </div>

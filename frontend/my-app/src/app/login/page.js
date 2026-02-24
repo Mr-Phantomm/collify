@@ -1,78 +1,105 @@
-'use client'
-import Link from "next/link";
-import { useState,useEffect, use } from "react";
+'use client';
 
-// Example Teacher Login for testing
-//   "email": "arun@teacher.com",
-//   "password": "test123456",
-// Example student Login for testing 
-//   "email": "student@example.com",
-//   "password": "student123",
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import styles from './Login.module.css';
+
 export default function Login() {
-    
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [token, setToken] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    useEffect(() => {
-        const storedToken = localStorage.getItem("token");
-
-        if (storedToken) {
-            setToken(storedToken);
-            window.location.href = "/";
-        }
-    }, []);
-    // console.log("Current Email ",email);
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-
-        try {
-            console.log('Button clicked, sending:', { email, password });
-            const response = await fetch('http://localhost:5000/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password })
-            });
-            console.log("Got response");
-            const data = await response.json();
-            if (response.ok) {
-                localStorage.setItem('token', data.token);
-                alert("Token Saved");
-                console.log("Token Saved", data.token);
-                window.location.href="/";
-            } else {
-                alert('Login Failed' + (data.msg || "Internal Server Error"));
-            }
-        } catch (error) {
-            console.log(error);
-            alert('Server Error');
-        }
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      window.location.href = '/';
     }
+  }, []);
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    return (
-    
-    <div className="min-h-screen bg-gray-100 flex item-center justify-center">
-        <div className="bg-white p-8 rouded-lg shadow-lg w-full max-w-md">
-            <h1 className="text-3xl font-bold text-center mb-6 text-gray-800 ">Login</h1>
-            <form onSubmit={handleLogin} className="">
-                <div>
-                <label htmlFor="emailInput" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" id="emailInput" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
-                </div>
-                <div>
-                <label htmlFor="passWord" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                <input type="password" id="passWord" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo"/>
-                </div>
-                <button type="submit" className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transtion-colors mt-2">Login</button>
-            </form>
-            <p className="mt-4 text-center text-sm text-gray-600">
-                Don't have an Account ?<Link href="/register" className="text-indigo-600 hover:underline"> Register here</Link> 
-            </p>
-        </div>
+    try {
+      const response = await fetch('http://localhost:5000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        window.location.href = '/';
+      } else {
+        alert(data.msg || 'Login failed');
+      }
+    } catch (err) {
+      alert('Server error');
+    }
+  };
+
+  return (
+    <div className={styles['login-page']}>
+      <div className={styles['login-card']}>
+        {/* Icon */}
+        <div className={styles['icon-wrapper']}>🎓</div>
+
+        {/* Title */}
+        <h2>Welcome back</h2>
+        <p className={styles.subtitle}>
+          Enter your credentials to access your account
+        </p>
+
+        {/* Form */}
+        <form className={styles['login-form']} onSubmit={handleLogin}>
+          <label>Email</label>
+          <div className={styles['input-group']}>
+            <span className={styles['input-icon']}>🖂</span>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className={styles['password-header']}>
+            <label>Password</label>
+            <span className={styles.forgot}>Forgot password?</span>
+          </div>
+
+          <div className={styles['input-group']}>
+            <span className={styles['input-icon']}>🔒︎</span>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span className={styles.eye}>👁</span>
+          </div>
+
+          <div className={styles.remember}>
+            <input type="checkbox" />
+            <span>Remember me for 30 days</span>
+          </div>
+
+          <button type="submit" className={styles['submit-btn']}>
+            Sign in
+          </button>
+        </form>
+
+        <div className={styles.divider} />
+
+        <p className={styles['signup-text']}>
+          Don&apos;t have an account?{' '}
+          <Link href="/register">
+            <span>Sign up</span>
+          </Link>
+        </p>
+      </div>
     </div>
-    )
+  );
 }

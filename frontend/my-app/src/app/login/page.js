@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import { useState,useEffect, use } from "react";
+import { useState,useEffect } from "react";
 
 // Example Teacher Login for testing
 //   "email": "arun@teacher.com",
@@ -55,17 +55,17 @@ export default function Login() {
 
     return (
     
-    <div className="min-h-screen bg-gray-100 flex item-center justify-center">
-        <div className="bg-white p-8 rouded-lg shadow-lg w-full max-w-md">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full bg-white space-y-8 p-8 rounded-xl shadow-xl">
             <h1 className="text-3xl font-bold text-center mb-6 text-gray-800 ">Login</h1>
             <form onSubmit={handleLogin} className="">
                 <div>
                 <label htmlFor="emailInput" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" id="emailInput" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+                <input type="email" id="emailInput" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 </div>
                 <div>
                 <label htmlFor="passWord" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                <input type="password" id="passWord" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo"/>
+                <input type="password" id="passWord" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
                 </div>
                 <button type="submit" className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transtion-colors mt-2">Login</button>
             </form>

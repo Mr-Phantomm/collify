@@ -1,0 +1,119 @@
+.login-page {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9fafb;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 30px;
+}
+
+.login-card {
+  width: 420px;
+  background-color: white;
+  padding: 32px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.icon-wrapper {
+  width: 56px;
+  height: 56px;
+  background-color: #eef2ff;
+  color: #6366f1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin: 0 auto 16px;
+}
+
+.login-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 8px 0 24px;
+}
+
+.login-form {
+  text-align: left;
+}
+
+.login-form label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+/* Updated to apply to both input and select */
+.input-group input, 
+.input-group select {
+  width: 100%;
+  padding: 10px 10px 10px 36px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  z-index: 1;
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #4f46e5;
+}
+
+.signup-text {
+  margin-top: 24px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.signup-text span {
+  color: #6366f1;
+  cursor: pointer;
+  font-weight: 500;
+}

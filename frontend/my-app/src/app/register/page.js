@@ -1,5 +1,7 @@
 'use client'
 import { useState } from "react";
+import styles from './Register.module.css';
+
 export default function Register(){
     const [username,setUsername] = useState('');
     const [email,setEmail] = useState('');
@@ -32,31 +34,78 @@ export default function Register(){
         }
     }
 
-    return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={handleRegister}>
-                <div>
+   return (
+        <div className={styles['login-page']}>
+            <div className={styles['login-card']}>
+                {/* Icon Header */}
+                <div className={styles['icon-wrapper']}>🎓</div>
+                
+                <h2>Create Account</h2>
+                <p className={styles['subtitle']}>Join us by entering your details below</p>
+
+                <form className={styles['login-form']} onSubmit={handleRegister}>
+                    {/* Username Field */}
                     <label>Username</label>
-                    <input type="text" placeholder="Username" value={username} onChange={(e)=>setUsername(e.target.value)} />
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input type="email" placeholder="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
-                </div>
-                <div>
+                    <div className={styles['input-group']}>
+                        <span className={styles['input-icon']}>👤</span>
+                        <input 
+                            type="text" 
+                            placeholder="Username" 
+                            value={username} 
+                            onChange={(e) => setUsername(e.target.value)} 
+                            required 
+                        />
+                    </div>
+
+                    {/* Email Field */}
+                    <label>Email Address</label>
+                    <div className={styles['input-group']}>
+                        <span className={styles['input-icon']}>✉️</span>
+                        <input 
+                            type="email" 
+                            placeholder="email@example.com" 
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)} 
+                            required 
+                        />
+                    </div>
+
+                    {/* Role Field */}
+                    <label>Role</label>
+                    <div className={styles['input-group']}>
+                        <span className={styles['input-icon']}>💼</span>
+                        <select 
+                            value={role} 
+                            onChange={(e) => setRole(e.target.value)}
+                            className={styles['role-select']}
+                        >
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                        </select>
+                    </div>
+
+                    {/* Password Field */}
                     <label>Password</label>
-                    <input type="password" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-                </div>
-                <div>
-                    <label>Role:</label>
-                    <select value={role} onChange={(e)=>setRole(e.target.value)}>
-                        <option value="student">Student</option>
-                        <option value="teacher">Teacher</option>
-                    </select>
-                </div>
-                <button type="submit">Register</button>
-            </form>
+                    <div className={styles['input-group']}>
+                        <span className={styles['input-icon']}>🔒</span>
+                        <input 
+                            type="password" 
+                            placeholder="••••••••" 
+                            value={password} 
+                            onChange={(e) => setPassword(e.target.value)} 
+                            required 
+                        />
+                    </div>
+
+                    <button type="submit" className={styles['submit-btn']}>
+                        Register
+                    </button>
+                </form>
+
+                <p className={styles['signup-text']}>
+                    Already have an account? <span>Sign in</span>
+                </p>
+            </div>
         </div>
     );
 }

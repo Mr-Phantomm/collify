@@ -158,7 +158,7 @@ export default function DashBoard() {
                 <p>No Classrooms yet.{role === 'teacher' &&"Create one if you are a Teacher"}</p>
             ):<ul>
                 {classrooms.map((classroom)=>(
-                    <li key={classroom._id}>
+                    <li key={classroom._id} style={{cursor:"pointer"}} onClick = {()=> router.push(`/classrooms/${classroom._id}`)}>
                         {classroom.name}
                         <br />
                         Join Code: <strong>{classroom.joinCode}</strong>

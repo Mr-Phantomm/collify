@@ -4,6 +4,8 @@ import { protect,teacherOnly } from '../middleware/auth.js';
 
 const router = express.Router();
 
+
+
 router.get('/get',protect,async(req,res)=>{
     try{
         let classroom;
@@ -26,7 +28,33 @@ router.get('/get',protect,async(req,res)=>{
         });
     }
 })
+router.get('/:id',protect,async(req,res)=>{
+    const classRoomId = req.params.id;
+    try{
+        const classroom = await Classroom.findById(classRoomId).populate('teacher','username email').populate('students','username email');
+        if(!classroom){
+            return res.status(404).json({
+                msg:"Classroom not Found",
+            });
+        }
+        const isTeacher = classroom.teacher._id.toString()===req.user.id;
+        const isStudent = classroom.students.some(s=>s._id.toString()=== req.user.id);
+        if(!isTeacher&&!isStudent){
+            return res.status(403).json({msg:'Not Authorized to view this Classroom '});
+        }
 
+        return res.json({
+            success:true,
+            classroom,
+            role:isTeacher?'teacher':'student'
+        });
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({
+            msg:"Server Error",
+        })
+    }
+})
 router.post('/create',protect,teacherOnly,async (req,res)=>{
     try{
         const { name } = req.body;

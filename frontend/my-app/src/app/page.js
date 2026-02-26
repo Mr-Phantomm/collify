@@ -3,7 +3,9 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import Navbar from "@/components/Navbar.js";
+import Navbar from "../components/navbar/Navbar";
+import Herosection from "../components/hero-section/Herosection";
+
 export default function Home() {
   // const router = useRouter();
   // useEffect(()=>{
@@ -17,7 +19,7 @@ export default function Home() {
   return (
   <>
     <Navbar />
-    <h1>Welcome to Collify</h1>  
+    <Herosection />
     </>
   );
 }

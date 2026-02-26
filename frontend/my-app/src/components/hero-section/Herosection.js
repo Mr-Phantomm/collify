@@ -1,7 +1,6 @@
-// app/page.jsx
 import styles from "./Home.module.css";
 
-export default function Home() {
+export default function Herosection() {
   return (
     <main className={styles.home}>
       {/* Headings */}

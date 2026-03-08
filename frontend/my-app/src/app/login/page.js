@@ -18,7 +18,7 @@ export default function Login() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      window.location.href = '/';
+      window.location.href = '/dashboard';
     }
   }, []);
 
@@ -36,7 +36,7 @@ export default function Login() {
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
-        window.location.href = '/';
+        window.location.href = '/dashboard';
       } else {
         alert(data.msg || 'Login failed');
       }

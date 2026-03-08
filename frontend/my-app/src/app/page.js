@@ -3,8 +3,10 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import Navbar from "@/components/Navbar.js";
-import HeroSection from "./home/page.js";
+
+import Navbar from "../components/navbar/Navbar";
+import Herosection from "../components/hero-section/Herosection";
+
 export default function Home() {
   // const router = useRouter();
   // useEffect(()=>{
@@ -18,7 +20,11 @@ export default function Home() {
   return (
   <>
     <Navbar />
+<<<<<<< HEAD
     <HeroSection />
+=======
+    <Herosection />
+>>>>>>> 661b01797793377fe2bd1b5f1a0c8d428cfff03a
     </>
   );
 }

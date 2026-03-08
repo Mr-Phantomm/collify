@@ -20,11 +20,7 @@ export default function Home() {
   return (
   <>
     <Navbar />
-<<<<<<< HEAD
     <HeroSection />
-=======
-    <Herosection />
->>>>>>> 661b01797793377fe2bd1b5f1a0c8d428cfff03a
     </>
   );
 }

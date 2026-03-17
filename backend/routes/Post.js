@@ -1,16 +1,28 @@
 import express from 'express'
-import Post from '../models/Post';
-import { protect, teacherOnly } from '../middleware/auth';
+import Post from '../models/Post.js';
+import Classroom from '../models/Classroom.js';
+import { protect, teacherOnly } from '../middleware/auth.js';
 const router = express.Router();
 
 router.get("/:classRoomId/get",protect,async (req,res)=>{
     try{
-        const Posts = await Post.find({classroom:req.params.classRoomId});
-        return res.status(200).json({
-            success:true,
-            msg:"Posts fetched Successfully!",
-            Posts
-        })
+        const { classRoomId } = req.params;
+        const classroom = await Classroom.findById(classRoomId);
+        if(!classroom) return res.status(404).json({ msg: 'Classroom not found ' });
+
+        const isTeacher = classroom.teacher.toString() === req.user.id;
+        const isStudent = classroom.students.some(s=>s.toString() === req.user.id);
+    
+        if(!isTeacher && !isStudent){
+            return res.status(403).json({msg : "Not Authorized "})
+        }
+
+        const posts = await Post.find({classroom : classRoomId}).populate('author', 'username email').populate('quiz_id').sort({createdAt : -1});
+
+        res.json({
+            success : true,
+            posts
+        });
     }catch(err){
         console.log(err);
         return res.status(500).json({
@@ -45,10 +57,10 @@ router.post("/:classRoomId/create",protect,teacherOnly,async (req,res)=>{
             type,
             title,
             content,
-            meetlink : type==="google_meet"?meetlink:undefined,
-            quizId: type==="quiz"?quizId:undefined,
+            meetLink : type==="google_meet"?meetLink:undefined,
+            quiz_id: type==="quiz"?quiz_id:undefined,
             material_URL:type==="material"?material_URL:undefined,
-            attachements : attachements || [],
+            attachements : attachments || [],
         });
 
         await post.save();
@@ -58,10 +70,12 @@ router.post("/:classRoomId/create",protect,teacherOnly,async (req,res)=>{
             post
         });
     }catch(err){
-        console.err(err);
+        console.log(err);
         return res.status(500).json({
             success:false,
-            msg:"Server error"
+            msg:"Internal Server error"
         });
     }
 });
+
+export default router;

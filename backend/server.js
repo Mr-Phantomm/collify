@@ -6,6 +6,7 @@ import authRoutes from './routes/auth.js';
 import classroomRoutes from './routes/classroom.js';
 import quizRoutes from './routes/quiz.js';
 import attemptRoutes from './routes/attempt.js';
+import postRoutes from './routes/Post.js';
 // import { protect,teacherOnly } from './middleware/auth.js';
 // import Question from './models/Question.js'; 
 
@@ -52,6 +53,6 @@ app.use('/auth',authRoutes);
 app.use('/classroom',classroomRoutes);
 app.use('/quizzes',quizRoutes);
 app.use('/attempts',attemptRoutes);
-
+app.use('/post',postRoutes);
 
 app.listen(process.env.PORT, ()=>console.log(`Server on port ${process.env.PORT}`));

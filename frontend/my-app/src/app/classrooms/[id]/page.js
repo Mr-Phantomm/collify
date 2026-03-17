@@ -10,7 +10,7 @@ export default function ClassroomDashboard() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [userRole, setUserRole] = useState(null)
-
+  const [posts,setPosts] = useState([]);
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -31,14 +31,32 @@ export default function ClassroomDashboard() {
           }
           setClassroom(data.classroom);
           setUserRole(data.role);
+          const postsRes = await fetch(`http://localhost:5000/post/${id}/get`,{
+            headers:{
+              'Authorization':`Bearer ${token}`
+            }
+          });
+          const postsData = await postsRes.json();
+          if(postsRes.ok){
+            console.log(postsData.posts);
+            postsData.posts.forEach(element => {
+              posts.push(element);
+            });
+            console.log(posts);
+          }
         }catch(err){
           setError(err.message);
         } finally{
           setLoading(false);
         }
+        
     }
     fetchClassroom();  
   },[id,router]);
+
+  const handleCreatePost =()=>{
+
+  }
 
   if(loading)return <div>Loading Classroom...</div>
   if(error)return <div>Error : {error}</div>
@@ -63,7 +81,39 @@ export default function ClassroomDashboard() {
         </div>
       )}
       <h2>Posts: </h2>
-      <p>(Posts and Quizzes will appear here later)</p>
+      {posts.length === 0 ? (
+        <p>No Posts Yet</p>
+      ) : (
+        <ul>
+        {posts.map(post => (
+      <li key={post._id} style={{ marginBottom: '20px', borderBottom: '1px solid #eee' }}>
+        <h3>{post.title}</h3>
+        <p>{post.content}</p>
+        <small>By {post.author.username} on {new Date(post.createdAt).toLocaleDateString()}</small>
+
+        {post.type === 'google_meet' && post.meetLink && (
+          <p>
+            <a href={post.meetLink} target="_blank" rel="noopener noreferrer">
+              Join Google Meet
+            </a>
+          </p>
+        )}
+
+        {post.type === 'quiz' && post.quizId && (
+          <p>Quiz: {post.quizId.title} (Attempt now)</p>
+        )}
+
+        {post.type === 'material' && post.materialUrl && (
+          <p>
+            <a href={post.materialUrl} target="_blank" rel="noopener noreferrer">
+              Download Material
+            </a>
+          </p>
+        )}
+      </li>
+    ))}
+      </ul>
+      )}
 
     </div>
   )

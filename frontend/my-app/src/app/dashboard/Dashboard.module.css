@@ -1,13 +1,33 @@
 .dashboard-page{
-min-height: calc(100vh - 72px);
-  padding: 80px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  min-height: calc(100vh - 72px);
+  padding: 20px 20px;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   background-image:
     linear-gradient(#e5e7eb 1px, transparent 1px),
     linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+.dashboard-page h1 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #111827;
+  width:100%;
+  /* border:1px solid black; */
+  text-align : center;
+}
+.classrooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.no-classrooms {
+  grid-column: 1 / -1; /* span across all columns */
+  text-align: center;
+  color: #6b7280;
+  font-size: 1.1rem;
+  padding: 40px 0;
 }

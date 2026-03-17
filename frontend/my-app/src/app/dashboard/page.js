@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './Dashboard.module.css'
 import Navbar from '@/components/navbar/Navbar'
+import ClassRoomCard from '@/components/classroom-card/ClassRoomCard'
 
 export default function DashBoard() {
     const router = useRouter()
@@ -128,8 +129,7 @@ export default function DashBoard() {
             <Navbar />
             <div className={styles['dashboard-page']}>
                 <h1>DashBoard</h1>
-
-                <button onClick={handleLogout}>Logout</button>
+                {/* <button onClick={handleLogout}>Logout</button>  logout logic handled in the navbar */}
 
                 <h2>My Classrooms</h2>
 
@@ -157,21 +157,17 @@ export default function DashBoard() {
 
                     </div>
                 )}
-
-                {classrooms.length === 0 ? (
-                    <p>No Classrooms yet.{role === 'teacher' && "Create one if you are a Teacher"}</p>
-                ) : <ul>
-                    {classrooms.map((classroom) => (
-                        <li key={classroom._id} style={{ cursor: "pointer" }} onClick={() => router.push(`/classrooms/${classroom._id}`)}>
-                            {classroom.name}
-                            <br />
-                            Join Code: <strong>{classroom.joinCode}</strong>
-                        </li>
-                    ))}
-                </ul>
-                }
-
-
+                <div className={styles['classrooms-grid']}>
+                    {classrooms.length === 0 ? (
+                        <p className={styles['no-classrooms']}>
+                            No Classrooms yet. {role === 'teacher' && "Create one if you are a Teacher"}
+                        </p>
+                    ) : (
+                        classrooms.map((classroom) => (
+                            <ClassRoomCard key={classroom._id} classroom={classroom} />
+                        ))
+                    )}
+                </div>
             </div>
         </>
     );

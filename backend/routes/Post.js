@@ -2,6 +2,7 @@ import express from 'express'
 import Post from '../models/Post.js';
 import Classroom from '../models/Classroom.js';
 import { protect, teacherOnly } from '../middleware/auth.js';
+import upload from '../middleware/upload.js';
 const router = express.Router();
 
 router.get("/:classRoomId/get",protect,async (req,res)=>{
@@ -32,11 +33,11 @@ router.get("/:classRoomId/get",protect,async (req,res)=>{
     }
 });
 
-router.post("/:classRoomId/create",protect,teacherOnly,async (req,res)=>{
+router.post("/:classRoomId/create",protect,teacherOnly,upload.array('attachments',5),async (req,res)=>{
     
     try{
         const {classRoomId} = req.params;
-        const {type,title,content,meetLink,quiz_id,attachments,material_URL} =req.body;
+        const {type,title,content,meetLink,quiz_id,material_URL} =req.body;
         
         const classroom = await Classroom.findById(classRoomId);
         if(!classroom){
@@ -50,6 +51,18 @@ router.post("/:classRoomId/create",protect,teacherOnly,async (req,res)=>{
                 msg:"Not Authorised",
             });
         }
+        let attachmentsUrls = [];
+        if(req.files && req.files.length>0){
+            for(const file of req.files){
+                const result = await cloudinary.uploader.upload_stream(
+                    {resource_type : 'raw'},
+                    (error,result)=>{
+                        if(error)throw error;
+                        attachmentsUrls.push(result.secure_url)
+                    }
+                ).end(file.buffer)
+            }
+        }
 
         const post = new Post({
             classroom : classRoomId,
@@ -60,7 +73,7 @@ router.post("/:classRoomId/create",protect,teacherOnly,async (req,res)=>{
             meetLink : type==="google_meet"?meetLink:undefined,
             quiz_id: type==="quiz"?quiz_id:undefined,
             material_URL:type==="material"?material_URL:undefined,
-            attachements : attachments || [],
+            attachements : attachmentsUrls || [],
         });
 
         await post.save();

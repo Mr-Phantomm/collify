@@ -1,0 +1,89 @@
+/* Classrooms.module.css */
+
+/* Main page container */
+.classroomPage {
+  padding: 40px 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+  background: #f9fafb;
+  min-height: calc(100vh - 72px); /* subtract navbar height */
+}
+
+/* Header card */
+.classroomHeader {
+  background: white;
+  padding: 40px 32px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  margin-bottom: 48px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gradient background for header */
+.classroomHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+}
+
+/* Classroom name */
+.classroomHeader h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+/* Join code */
+.joinCode {
+  font-size: 1.25rem;
+  color: #4b5563;
+  margin-bottom: 20px;
+}
+
+.joinCode strong {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+/* Role badge */
+.roleBadge {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Teacher badge */
+.roleBadge.teacher {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+/* Student badge */
+.roleBadge.student {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+/* Placeholder content area */
+.placeholder {
+  background: white;
+  padding: 60px 40px;
+  border-radius: 12px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 1.2rem;
+  border: 2px dashed #d1d5db;
+}

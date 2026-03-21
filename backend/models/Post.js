@@ -38,7 +38,8 @@ const postSchema = new mongoose.Schema({
         required: function() { return this.type === 'material' }
     },
     attachments:[{
-        type:String,
+        type:[String],
+        default : [],
     }],
     createdAt:{
         type:Date,

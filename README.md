@@ -90,17 +90,19 @@ Open http://localhost:3000
 ```
 
 
-## 🗺 Current Roadmap
+## 🗺️ Current Roadmap
 
- Authentication & roles
- Classroom create / join
- Dashboard + classroom list
- Posts (announcements / materials)
- Quiz creation & attempt UI
- Attendance marking + view
- Coding submission & judging
- Responsive design polish
- Deployment (Vercel frontend + Render backend)
+- [x] Authentication & roles
+- [x] Classroom create / join
+- [x] Dashboard + classroom list
+- [x] Posts (announcements / materials)
+- [ ] Quiz creation & attempt UI
+- [ ] Attendance marking + view
+- [ ] Coding submission & judging
+- [ ] Responsive design polish
+- [ ] Deployment (Vercel frontend + Render backend)
+
+<br />
 
 
 ## 🤝 Contributing

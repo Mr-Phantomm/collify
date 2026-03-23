@@ -3,6 +3,7 @@ import Post from '../models/Post.js';
 import Classroom from '../models/Classroom.js';
 import { protect, teacherOnly } from '../middleware/auth.js';
 import upload from '../middleware/upload.js';
+import { v2 as cloudinary } from "cloudinary";
 const router = express.Router();
 
 router.get("/:classRoomId/get",protect,async (req,res)=>{
@@ -34,7 +35,6 @@ router.get("/:classRoomId/get",protect,async (req,res)=>{
 });
 
 router.post("/:classRoomId/create",protect,teacherOnly,upload.array('attachments',5),async (req,res)=>{
-    
     try{
         const {classRoomId} = req.params;
         const {type,title,content,meetLink,quiz_id,material_URL} =req.body;

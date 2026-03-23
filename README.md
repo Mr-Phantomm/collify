@@ -1,99 +1,119 @@
-# Collify – Classroom + Testing Platform
+<div align="center">
 
-A full-stack learning platform inspired by Google Classroom with built-in quiz/testing features (MCQs with auto-grading + planned coding/DSA problems).
+  <h1>📚 Collify</h1>
+  <p>
+    <strong>Modern Classroom & Testing Platform</strong><br />
+    Create classes • Run MCQ quizzes with auto-grading • Join with code • Future: coding problems & attendance
+  </p>
 
-- Teachers: create classrooms, make quizzes (MCQ), manage students
-- Students: join classrooms, attempt quizzes, see scores
+  <p>
+    <a href="https://github.com/Mr-Phantomm/collify/stargazers">
+      <img src="https://img.shields.io/github/stars/Mr-Phantomm/collify?style=social" alt="GitHub stars" />
+    </a>
+    <a href="https://github.com/Mr-Phantomm/collify/blob/main/LICENSE">
+      <img src="https://img.shields.io/github/license/Mr-Phantomm/collify?color=blue" alt="License" />
+    </a>
+    <a href="https://github.com/Mr-Phantomm/collify/issues">
+      <img src="https://img.shields.io/github/issues/Mr-Phantomm/collify?color=red" alt="Issues" />
+    </a>
+    <a href="https://github.com/Mr-Phantomm/collify/pulls">
+      <img src="https://img.shields.io/github/issues-pr/Mr-Phantomm/collify?color=purple" alt="Pull Requests" />
+    </a>
+  </p>
 
-Frontend: Next.js (JavaScript) + Tailwind  
-Backend: Node.js / Express / MongoDB Atlas
+</div>
 
-## Features Done
-- Register / Login (student & teacher roles)
-- JWT authentication & role protection
-- Create classroom (teacher only)
-- Join classroom using code
-- MCQ quiz creation & auto-grading
-- Student quiz attempt & instant score
+<br />
 
-## Features Planned
-- Coding / DSA problem submission
-- Teacher manual grading view
-- Full dashboard with classrooms list
-- Responsive UI + Navbar
-- Attendance, notices, file uploads
+## ✨ Features
 
-## Tech Stack
-- Frontend: Next.js 14 (App Router), React, Tailwind CSS
-- Backend: Node.js, Express, Mongoose
-- Database: MongoDB Atlas
-- Auth: JWT + bcrypt
+| Category             | Status | Description                                                                 |
+|----------------------|--------|-----------------------------------------------------------------------------|
+| Authentication       | ✅     | Register / Login with role (Student / Teacher) + JWT                        |
+| Classrooms           | ✅     | Create classroom • Unique join code • Join classroom • My classrooms list   |
+| Posts & Announcements| ✅     | Teacher can post notices / materials / Google Meet links                    |
+| MCQ Quizzes          | ✅     | Create quizzes • Auto-grading • Instant feedback for students               |
+| Attendance           | 🚧     | Teacher marks present/absent • Student views own attendance                 |
+| Coding / DSA Problems| ⏳     | Planned – submission + judging (Judge0 or custom)                           |
+| Role-based UI        | ✅     | Teacher sees create/mark controls • Student sees attempt/view mode          |
 
-## Quick Setup
+<br />
 
-### 1. Clone repo
-git clone https://github.com/YOUR_USERNAME/collify.git
-cd collify
+## 🛠 Tech Stack
 
-### 2. Backend
+| Layer       | Technology                          | Why we chose it                              |
+|-------------|-------------------------------------|----------------------------------------------|
+| Frontend    | Next.js 14 (App Router) + React     | Fast, SEO-friendly, great developer experience |
+| Styling     | Pure CSS / CSS Modules              | Full control, no bloat, learning focused     |
+| Backend     | Node.js + Express                   | Simple, fast API development                 |
+| Database    | MongoDB Atlas + Mongoose            | Flexible schema, easy cloud setup            |
+| Auth        | JWT + bcrypt                        | Secure tokens & password hashing             |
+| File Upload | Multer + Cloudinary (planned)       | Easy PDF/image attachments                   |
+
+<br />
+
+## 🚀 Quick Start (Local Development)
+
+### Prerequisites
+
+- Node.js ≥ 18
+- MongoDB Atlas account (free tier works perfectly)
+
+### Backend
+
+```bash
 cd backend
 npm install
+```
 
-Create .env file in backend/:
-PORT=5000
-DB_URI=mongodb+srv://<user>:<pass>@cluster0.xxx.mongodb.net/collify?retryWrites=true&w=majority
-JWT_SECRET=super_long_random_secret_1234567890
+### Create .env file in backend/ folder:
+```bash
+envPORT=5000
+DB_URI=your-mongodb-atlas-connection-string
+JWT_SECRET=your-very-long-random-secret-here
+CLOUDINARY_CLOUD_NAME=xxx     # optional for now
+CLOUDINARY_API_KEY=xxx
+CLOUDINARY_API_SECRET=xxx
+```
 
+### Start backend:
+```bash
 npm start
-→ should show "Server is running on port 5000"
+```
 
-### 3. Frontend (new terminal)
+### Frontend
+```bash
 cd ../frontend
 npm install
 npm run dev
+Open http://localhost:3000
+```
 
-→ open http://localhost:3000
 
-### Default flow
-1. Register → choose student/teacher
-2. Login
-3. Dashboard → see classrooms
-4. Teacher → create classroom
-5. Student → join with code → attempt quiz
+## 🗺️ Current Roadmap
 
-## Folder Structure
-collify/
-├── backend/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   ├── server.js
-│   └── .env
-├── frontend/
-│   ├── src/
-│   │   ├── app/           ← login, register, dashboard...
-│   │   ├── components/
-│   │   └── lib/
-│   └── package.json
-└── README.md
+- [x] Authentication & roles
+- [x] Classroom create / join
+- [x] Dashboard + classroom list
+- [x] Posts (announcements / materials)
+- [ ] Quiz creation & attempt UI
+- [ ] Attendance marking + view
+- [ ] Coding submission & judging
+- [ ] Responsive design polish
+- [ ] Deployment (Vercel frontend + Render backend)
 
-## Current Status (Feb 2026)
-✅ Auth + roles  
-✅ Classrooms (create/join)  
-✅ MCQ quizzes + auto-grading  
-✅ Quiz attempt & score  
-🚧 Dashboard + classrooms fetch  
-⏳ Coding problems  
-⏳ Teacher grading  
-⏳ Full UI polish
+<br />
 
-## Contributing
-1. Fork
-2. git checkout -b feature/your-feature
-3. git commit -m "Add feature"
-4. git push origin feature/your-feature
-5. Open Pull Request
 
-MIT License  
-Feel free to fork, learn, modify.
+## 🤝 Contributing
+Pull requests are welcome!
+
+1. Fork the repo
+2. Create your feature branch (git checkout -b feature/amazing-feature)
+3. Commit your changes (git commit -m 'Add amazing feature')
+4. Push to the branch (git push origin feature/amazing-feature)
+5. Open a Pull Request
+
+
+  Happy Learning & Teaching! 🚀
 

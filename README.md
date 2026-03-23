@@ -7,16 +7,16 @@
   </p>
 
   <p>
-    <a href="https://github.com/yourusername/collify/stargazers">
+    <a href="https://github.com/Mr-Phantomm/collify/stargazers">
       <img src="https://img.shields.io/github/stars/yourusername/collify?style=social" alt="GitHub stars" />
     </a>
-    <a href="https://github.com/yourusername/collify/blob/main/LICENSE">
+    <a href="https://github.com/Mr-Phantomm/collify/blob/main/LICENSE">
       <img src="https://img.shields.io/github/license/yourusername/collify?color=blue" alt="License" />
     </a>
-    <a href="https://github.com/yourusername/collify/issues">
+    <a href="https://github.com/Mr-Phantomm/collify/issues">
       <img src="https://img.shields.io/github/issues/yourusername/collify?color=red" alt="Issues" />
     </a>
-    <a href="https://github.com/yourusername/collify/pulls">
+    <a href="https://github.com/Mr-Phantomm/collify/pulls">
       <img src="https://img.shields.io/github/issues-pr/yourusername/collify?color=purple" alt="Pull Requests" />
     </a>
   </p>

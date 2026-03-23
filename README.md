@@ -8,16 +8,16 @@
 
   <p>
     <a href="https://github.com/Mr-Phantomm/collify/stargazers">
-      <img src="https://img.shields.io/github/stars/yourusername/collify?style=social" alt="GitHub stars" />
+      <img src="https://img.shields.io/github/stars/Mr-Phantomm/collify?style=social" alt="GitHub stars" />
     </a>
     <a href="https://github.com/Mr-Phantomm/collify/blob/main/LICENSE">
-      <img src="https://img.shields.io/github/license/yourusername/collify?color=blue" alt="License" />
+      <img src="https://img.shields.io/github/license/Mr-Phantomm/collify?color=blue" alt="License" />
     </a>
     <a href="https://github.com/Mr-Phantomm/collify/issues">
-      <img src="https://img.shields.io/github/issues/yourusername/collify?color=red" alt="Issues" />
+      <img src="https://img.shields.io/github/issues/Mr-Phantomm/collify?color=red" alt="Issues" />
     </a>
     <a href="https://github.com/Mr-Phantomm/collify/pulls">
-      <img src="https://img.shields.io/github/issues-pr/yourusername/collify?color=purple" alt="Pull Requests" />
+      <img src="https://img.shields.io/github/issues-pr/Mr-Phantomm/collify?color=purple" alt="Pull Requests" />
     </a>
   </p>
 

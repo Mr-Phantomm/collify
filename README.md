@@ -79,8 +79,11 @@ CLOUDINARY_API_SECRET=xxx
 ### Start backend:
 ```bash
 npm start
-Frontend
-Bashcd ../frontend
+```
+
+### Frontend
+```bash
+cd ../frontend
 npm install
 npm run dev
 Open http://localhost:3000

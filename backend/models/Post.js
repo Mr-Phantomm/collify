@@ -37,10 +37,10 @@ const postSchema = new mongoose.Schema({
         type:String,
         required: function() { return this.type === 'material' }
     },
-    attachments:[{
+    attachments:{
         type:[String],
         default : [],
-    }],
+    },
     createdAt:{
         type:Date,
         default:Date.now()

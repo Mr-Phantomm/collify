@@ -126,49 +126,97 @@ export default function DashBoard() {
 
     return (
         <>
-            <Navbar />
-            <div className={styles['dashboard-page']}>
-                <h1>DashBoard</h1>
-                {/* <button onClick={handleLogout}>Logout</button>  logout logic handled in the navbar */}
+        <Navbar />
+        <div className={styles.container}>
+        {/* Header */}
+        <header className={styles.header}>
+          <p className={styles.subtitle}>
+            Welcome back, {role === 'teacher' ? 'Professor' : 'Student'}. Manage your learning environments.
+          </p>
+        </header>
 
-                <h2>My Classrooms</h2>
-
-                {role === 'teacher' && (
-                    <div>
-                        <button onClick={() => setShowCreateForm(!showCreateForm)}>
-                            {showCreateForm ? 'Cancel' : 'Create new Classroom'}
-                        </button>
-                        {showCreateForm && (
-                            <form onSubmit={handleCreateClassroom}>
-                                <input type="text" placeholder="ClassRoom Name" value={classroomName} onChange={(e) => setClassroomName(e.target.value)} />
-                                <button type="submit">Create</button>
-                            </form>
-                        )}
-                    </div>
-                )}
-
-                {role === 'student' && (
-                    <div>
-                        <form onSubmit={handleJoinClassroom}>
-                            <input type="text" placeholder="Enter Join Code (6 Digits)" value={joinCode} onChange={(e) => setJoinCode(e.target.value)} />
-                            <button type="submit">Join</button>
-
-                        </form>
-
-                    </div>
-                )}
-                <div className={styles['classrooms-grid']}>
-                    {classrooms.length === 0 ? (
-                        <p className={styles['no-classrooms']}>
-                            No Classrooms yet. {role === 'teacher' && "Create one if you are a Teacher"}
-                        </p>
-                    ) : (
-                        classrooms.map((classroom) => (
-                            <ClassRoomCard key={classroom._id} classroom={classroom} />
-                        ))
-                    )}
-                </div>
+        {/* Action Options */}
+        <div className={styles.actionsGrid}>
+          {/* Action 1: My Classrooms Scroll-to Section */}
+          <div className={styles.actionCard} onClick={() => document.getElementById('classrooms-section').scrollIntoView({ behavior: 'smooth' })}>
+            <div className={styles.cardContent}>
+              <h2>My Classrooms</h2>
+              <p>View your {classrooms.length} active learning groups.</p>
             </div>
+            <svg className={styles.arrowIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+
+          {/* Action 2: Role Based Action (Create or Join) */}
+          <div className={`${styles.actionCard} ${styles.createCard}`} onClick={() => role === 'teacher' ? setShowCreateForm(!showCreateForm) : null}>
+            <div className={styles.cardContent}>
+              <h2>{role === 'teacher' ? (showCreateForm ? 'Close Form' : 'Create New') : 'Join Classroom'}</h2>
+              
+              {/* Conditional Form Rendering inside Action Card */}
+              {(role === 'teacher' && showCreateForm) && (
+                <form onSubmit={handleCreateClassroom} className={styles.inlineForm} onClick={(e) => e.stopPropagation()}>
+                  <input 
+                    type="text" 
+                    placeholder="ClassRoom Name" 
+                    value={classroomName} 
+                    onChange={(e) => setClassroomName(e.target.value)} 
+                    className={styles.formInput}
+                  />
+                  <button type="submit" className={styles.formButton}>Create</button>
+                </form>
+              )}
+
+              {role === 'student' && (
+                <form onSubmit={handleJoinClassroom} className={styles.inlineForm} onClick={(e) => e.stopPropagation()}>
+                  <input 
+                    type="text" 
+                    placeholder="6-Digit Join Code" 
+                    value={joinCode} 
+                    onChange={(e) => setJoinCode(e.target.value)} 
+                    className={styles.formInput}
+                  />
+                  <button type="submit" className={styles.formButton}>Join</button>
+                </form>
+              )}
+              
+              {!showCreateForm && role === 'teacher' && <p>Launch a new interactive classroom.</p>}
+              {role === 'student' && <p>Enter a code to participate in a class.</p>}
+            </div>
+            {role === 'teacher' && !showCreateForm && <svg className={styles.arrowIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>}
+          </div>
+        </div>
+
+        {/* Classrooms List Grid */}
+        <section id="classrooms-section">
+          <div className={styles.sectionHeader}>
+            <h3 className={styles.sectionTitle}>Active Environments</h3>
+          </div>
+
+          <div className={styles.classroomGrid}>
+            {classrooms.length === 0 ? (
+              <div className={styles.emptyState}>
+                <p className={styles.noClassrooms}>
+                  No Classrooms yet. {role === 'teacher' && "Create one to get started!"}
+                </p>
+              </div>
+            ) : (
+              classrooms.map((classroom) => (
+                <ClassRoomCard key={classroom._id} classroom={classroom} />
+              ))
+            )}
+            
+            {role === 'teacher' && (
+              <div className={styles.addPlaceholder} onClick={() => setShowCreateForm(true)}>
+                <div className={styles.addText}>
+                  <svg className={styles.addIcon} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                  </svg>
+                  <span>Add Classroom</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
         </>
     );
 }

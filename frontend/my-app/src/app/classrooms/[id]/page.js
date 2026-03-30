@@ -18,6 +18,7 @@ export default function ClassroomDashboard() {
   const [postContent, setPostContent] = useState('');
   const [postType, setPostType] = useState('announcement');
   const [files, setFiles] = useState([]);
+  const [meetLink,setMeetLink] = useState("");
 
 
   useEffect(() => {
@@ -74,6 +75,9 @@ export default function ClassroomDashboard() {
     formData.append('type', postType);
     formData.append('title', postTitle);
     formData.append('content', postContent);
+    if(postType=== 'google_meet'){
+      formData.append('meetLink',meetLink);
+    }
 
     if (files.length > 0) {
       files.forEach(file => {
@@ -101,6 +105,7 @@ export default function ClassroomDashboard() {
       setPostTitle('');
       setPostContent('');
       setPostType('announcement');
+      setMeetLink('');
       setFiles([]);
       setShowPostForm(false);
     } catch (err) {
@@ -137,10 +142,11 @@ export default function ClassroomDashboard() {
                   <option value="quiz">Quiz</option>
                 </select>
                 <input type="text" placeholder="Post Title" value={postTitle} onChange={(e) => setPostTitle(e.target.value)} className={styles.postTitleInput} required />
-                <textarea type="text" placeholder="Write Your Post Content Here" value={postContent} onChange={(e) => setPostContent(e.target.value)} rows={5} className={styles.postContentTextArea} required />
+                <textarea type="text" placeholder="Write Your Post Content Here" value={postContent} onChange={(e) => setPostContent(e.target.value)} rows={5} className={styles.postContentTextarea} required />
+                {postType === "google_meet" && (<input type="text" placeholder="Paste Google Meet Link" value={meetLink} onChange={(e)=>setMeetLink(e.target.value)} className={styles.meetLinkInput} required />)}
                 <div className={styles.attachmentsSection}>
                   <label htmlFor="attachments">Attach PDF's (Optional) Max:5 </label>
-                  <input id="attachments" type="file" accept="application/pdf" multiple onChange={(e) => setFiles(Array.from(e.target.files))} className={styles.selectedFiles} />
+                  <input id="attachments" type="file" accept="application/pdf" multiple onChange={(e) => setFiles(Array.from(e.target.files))} className={styles.fileInput} />
                   <ul>
                     {files.map((file, index) => (
                       <li key={index}>{file.name} ({(file.size / 1024).toFixed(1)} KB)</li>
@@ -161,53 +167,72 @@ export default function ClassroomDashboard() {
 
       {/* Placeholder for future content */}
       <div className={styles.placeholder}>
-        {/* Posts List */}
-        <div className={styles.postsSection}>
+              {/* Posts Section */}
+      <div className={styles.postsSection}>
+        <div className={styles.postsHeader}>
           <h2>Posts & Activities</h2>
-
-          {posts.length === 0 ? (
-            <p className={styles.noPosts}>No posts yet. Create your first post above.</p>
-          ) : (
-            <div className={styles.postsList}>
-              {posts.map((post) => (
-                <div key={post._id} className={styles.postCard}>
-                  <div className={styles.postHeader}>
-                    <h3>{post.title}</h3>
-                    <span className={`${styles.postType} ${styles[post.type]}`}>
-                      {post.type.replace('_', ' ')}
-                    </span>
-                  </div>
-
-                  <p className={styles.postContent}>{post.content}</p>
-
-                  <div className={styles.postMeta}>
-                    <span>By {post.author?.username || 'Unknown'}</span>
-                    <span>{new Date(post.createdAt).toLocaleDateString()}</span>
-                  </div>
-
-                  {/* Attachments Section */}
-                  {post.attachments && post.attachments.length > 0 && (
-                    <div className="post-attachments">
-                      <strong>Attachments:</strong>
-                      {post.attachments.map((url, index) => (
-                        <div key={index}>
-                          <a
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            download
-                          >
-                            📄 Download PDF {index + 1}
-                          </a>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
+          <p className={styles.postsCount}>{posts.length} post{posts.length !== 1 ? 's' : ''}</p>
         </div>
+
+        {posts.length === 0 ? (
+          <div className={styles.noPosts}>
+            <p>No posts yet.</p>
+            {userRole === 'teacher' && <p>Click "Create New Post" to get started.</p>}
+          </div>
+        ) : (
+          <div className={styles.postsList}>
+            {posts.map((post) => (
+              <div key={post._id} className={styles.postCard}>
+                <div className={styles.postHeader}>
+                  <h3>{post.title}</h3>
+                  <span className={`${styles.postType} ${styles[post.type] || ''}`}>
+                    {post.type.replace('_', ' ')}
+                  </span>
+                </div>
+
+                <p className={styles.postContent}>{post.content}</p>
+
+                <div className={styles.postMeta}>
+                  <span>By {post.author?.username || 'Unknown'}</span>
+                  <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+                </div>
+
+                {/* Attachments / Meet Link */}
+                {post.attachments && post.attachments.length > 0 && (
+                  <div className={styles.postAttachments}>
+                    <strong>Attachments:</strong>
+                    {post.attachments.map((url, index) => (
+                      <a 
+                        key={index}
+                        href={url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        download
+                        className={styles.attachmentLink}
+                      >
+                        📄 Download PDF {index + 1}
+                      </a>
+                    ))}
+                  </div>
+                )}
+
+                {post.meetLink && (
+                  <div className={styles.meetLinkContainer}>
+                    <a 
+                      href={post.meetLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className={styles.meetLink}
+                    >
+                      🔗 Join Google Meet
+                    </a>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
       </div>
     </div>
   </>

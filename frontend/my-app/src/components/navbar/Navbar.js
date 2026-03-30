@@ -52,12 +52,15 @@ export default function Navbar(){
             </button>
           </>
         ) : (
+          <>
+          <Link href="/dashboard">Dashboard</Link>
           <button
             className={styles["cta-btn"]}
             onClick={handleLogout}
           >
             Logout
           </button>
+          </>
         )}
       </nav>
     </header>

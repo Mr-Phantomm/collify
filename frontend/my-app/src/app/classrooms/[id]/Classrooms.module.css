@@ -330,3 +330,86 @@
 .meetLink:hover {
   background: #dbeafe;
 }
+
+.quizSection {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  padding: 24px;
+}
+.quizList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.quizCard {
+  background: #fafafa;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 16px;
+}
+.takeQuizBtn,
+.submitQuizBtn,
+.addQuestionBtn {
+  background: #4f46e5;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.takeQuizBtn:hover,
+.submitQuizBtn:hover,
+.addQuestionBtn:hover {
+  background: #4338ca;
+}
+.teacherQuizLabel {
+  display: inline-block;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 14px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.activeQuizContainer,
+.quizResult,
+.quizBuilder {
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+.questionBlock {
+  margin-bottom: 14px;
+}
+.optionLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.quizInput,
+.quizSizeInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-top: 6px;
+}
+.quizOptionRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.quizQuestionList {
+  margin: 10px 0 0;
+  padding-left: 20px;
+}

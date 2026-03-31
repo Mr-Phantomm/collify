@@ -72,5 +72,26 @@ router.post('/:quizId/add-question',protect,teacherOnly,async(req,res)=>{
     }
 });
 
+router.get('/classroom/:classroomId',protect,async(req,res)=>{
+    try{
+        const quizzes = await Quiz.find({ classroom: req.params.classroomId }).populate('createdBy','username email').sort({createdAt:-1});
+        res.json({ success:true, quizzes });
+    }catch(err){
+        console.log(err);
+        res.status(500).json({msg:'Server error'});
+    }
+});
+
+router.get('/:quizId',protect,async(req,res)=>{
+    try{
+        const quiz = await Quiz.findById(req.params.quizId).populate('questions');
+        if(!quiz) return res.status(404).json({msg:'Quiz not found'});
+        res.json({success:true,quiz});
+    }catch(err){
+        console.log(err);
+        res.status(500).json({msg:'Server error'});
+    }
+});
+
 export default router;
 

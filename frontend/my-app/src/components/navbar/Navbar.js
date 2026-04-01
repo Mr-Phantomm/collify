@@ -37,9 +37,9 @@ export default function Navbar(){
 
       {/* RIGHT */}
       <nav className={styles["navbar-right"]}>
-        <Link href="#">Features</Link>
+        {/* <Link href="#">Features</Link>
         <Link href="#">How it Works</Link>
-        <Link href="#">Assessment</Link>
+        <Link href="#">Assessment</Link> */}
 
         {!isLoggedIn ? (
           <>

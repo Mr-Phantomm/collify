@@ -1,0 +1,57 @@
+.homeCard{
+    max-width:720px;
+    margin: 40px auto;
+    text-align: center;
+    padding:40px 32px;
+    border-radius:10px;
+    background: white;
+    box-shadow:0 4px 16px rgba(0,0,0,0.08);
+}
+.heading{
+    font-size:2rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.joinCode{
+    color:var(--text-muted);
+    font-size:1.1rem;
+    margin-bottom:16px;
+}
+
+.badgeTeacher,.badgeStudent{
+    background: #ecfdf5;
+    color:#065f46;
+    padding: 6px 20px;
+    border-radius:50px;
+    font-weight:600;
+    font-size:0.9rem;
+}
+
+.badgeStudent{
+    background: #eff6ff;
+    color:#1e40af;
+}
+
+.cancelBtn,.postBtn {
+  padding: 8px 20px;
+  border-radius: 50px;  
+  border: 1px solid #d1d5db;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top : 15px;
+}
+
+.cancelBtn:hover {
+  background: #fee2e2;    
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+.postBtn:hover{
+    background: #e9fee2;    
+    border-color: #b1fca5;
+    color: #26dc32;
+}

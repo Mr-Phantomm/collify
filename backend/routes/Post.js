@@ -88,11 +88,11 @@ router.post("/:classRoomId/create", protect, teacherOnly, upload.array('attachme
                     ).end(file.buffer);
                 });
 
-                // Simple URL – no fl_attachment for now
+                // Simple URL – no flattachment for now
                 attachmentUrls.push(result.secure_url);
             }
         }
-        console.log(attachmentUrls);
+        // console.log(attachmentUrls);
 
         const post = new Post({
             classroom: classRoomId,
